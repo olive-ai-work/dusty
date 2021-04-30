@@ -26,8 +26,9 @@
   },
   "homepage": "https://github.com/olive-ai-work/dusty#readme",
   "dependencies": {
-    "ramda": "^0.27.1",
-    "olive-data-contracts": "^1.0.6"
+    "@types/puppeteer": "^5.4.3",
+    "olive-data-contracts": "^1.0.6",
+    "ramda": "^0.27.1"
   },
   "devDependencies": {
     "esm": "^3.2.25",
