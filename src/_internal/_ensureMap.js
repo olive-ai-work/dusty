@@ -12,7 +12,7 @@ function ensureMap (data) {
   }
 
   if (!_checkFormat(data)) {
-    throw new Error('Data must be in a mappable format: [[x, y]]')
+    return new Map()
   }
 
   return new Map(data)
