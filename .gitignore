@@ -2,6 +2,9 @@
 # Created by https://www.toptal.com/developers/gitignore/api/macos,node,windows
 # Edit at https://www.toptal.com/developers/gitignore?templates=macos,node,windows
 
+### Ignore because I don't trust it ###
+.npmrc
+
 ### macOS ###
 # General
 .DS_Store
