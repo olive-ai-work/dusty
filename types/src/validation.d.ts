@@ -11,7 +11,7 @@ export interface Creds {
 }
 
 export interface Validation {
-  loginRequest(req: Creds): GlobalError[]
-  authRequest(req: TokenManagerRequest<AuthStatusRequest>): GlobalError[]
+  loginRequest<T = Creds>(req: T): GlobalError[]
+  authRequest<T = TokenManagerRequest<AuthStatusRequest>>(req: T): GlobalError[]
   patientRequest(req: AuthStatusRequest, rules: PredErrMap | PredArr): GlobalError | null
 }
