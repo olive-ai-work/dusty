@@ -46,16 +46,17 @@ function patientRequest (req, rules) {
   const rulesMap = _ensureMap(rules)
 
   if (!path(['authorization', 'trackingNumber'], req)) {
+    if (rulesMap.size <= 0) {
+      return createError(
+        ErrorCodes.AUTH_MISSING_TRACKING_ID,
+        'No Tracking number found, and no other search rules specified'
+      )
+    }
     for (const [pred, [err, a = 'N/A']] of rulesMap) {
       if (!pred(req)) {
         return createError(err, a)
       }
     }
-
-    return createError(
-      ErrorCodes.AUTH_MISSING_TRACKING_ID,
-      'No Tracking number found, and no other search rules specified'
-    )
   }
 
   return null
