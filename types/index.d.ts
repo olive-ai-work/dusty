@@ -1,14 +1,16 @@
-declare let D: D.Static
+import { Validation } from './src/validation'
 
-declare namespace D {
+declare let Dusty: Dusty.Static
+
+declare namespace Dusty {
   type KeyValuePair<K, V> = [K, V]
   type Pred = (...a: any[]) => boolean
   type Mappable = Array<KeyValuePair<any, any>>
 
   interface Static {
-
+    validation: Validation
   }
 }
 
-export = D
-export as namespace D
+export = Dusty
+export as namespace Dusty
