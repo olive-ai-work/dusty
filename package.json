@@ -5,7 +5,7 @@
   "main": "index.js",
   "typings": "types/index.d.ts",
   "scripts": {
-    "test": "tape tests/*.js | tap-spec",
+    "test": "tape -r esm tests/*.js | tap-spec",
     "lint": "standard src/*.js | snazzy",
     "lint:fix": "standard --fix src/*.js | snazzy"
   },
@@ -30,6 +30,7 @@
     "olive-data-contracts": "^1.0.6"
   },
   "devDependencies": {
+    "esm": "^3.2.25",
     "snazzy": "^9.0.0",
     "standard": "^16.0.3",
     "tap-spec": "^5.0.0",
