@@ -1,4 +1,6 @@
 import { Validation } from './src/validation'
+import { PageIO } from './src/pageIO'
+import { Utils } from './src/utils'
 
 declare let Dusty: Dusty.Static
 
@@ -9,6 +11,8 @@ declare namespace Dusty {
 
   interface Static {
     validation: Validation
+    pageIO: PageIO
+    utils: Utils
   }
 }
 
