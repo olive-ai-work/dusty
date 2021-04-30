@@ -1,12 +1,13 @@
 import { createError, ErrorCodes } from 'olive-data-contracts'
-import _mapType from './_internal/_mapType'
+import { path } from 'ramda'
+import _ensureMap from './_internal/_ensureMap'
 
 /**
  * Validates a provided login request
  * @param {Creds} credential A Credentials object containing username and password
  * @returns An array, empty if no errors exist, or populated with errors if they do
  */
-function validateLoginRequest (credential) {
+function loginRequest (credential) {
   const errs = []
 
   if (!credential.user) {
@@ -25,7 +26,7 @@ function validateLoginRequest (credential) {
  * @param {Object} req The provided argument object we need to validate
  * @returns An array of errors or an empty array if none are found
  */
-function validateAuthRequest (req) {
+function authRequest (req) {
   return Object.entries(req).reduce((acc, [key, val]) => {
     if (!val) {
       acc.push(createError(ErrorCodes.DATA_MISSING_PROPERTY, `Missing property ${key}`))
@@ -41,22 +42,27 @@ function validateAuthRequest (req) {
  * @param {Map|Array} rules A Mappable list of rules to run against our data
  * @returns An error back if one if found, null otherwise
  */
-function validatePatientRequest (req, rules) {
-  const rulesMap = _mapType(rules)
+function patientRequest (req, rules) {
+  const rulesMap = _ensureMap(rules)
 
-  if (!req.authorization?.trackingNumber) {
+  if (!path(['authorization', 'trackingNumber'], req)) {
     for (const [pred, [err, a = 'N/A']] of rulesMap) {
       if (!pred(req)) {
         return createError(err, a)
       }
     }
+
+    return createError(
+      ErrorCodes.AUTH_MISSING_TRACKING_ID,
+      'No Tracking number found, and no other search rules specified'
+    )
   }
 
   return null
 }
 
 export default {
-  validateLoginRequest,
-  validateAuthRequest,
-  validatePatientRequest
+  loginRequest,
+  authRequest,
+  patientRequest
 }
