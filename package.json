@@ -1,0 +1,43 @@
+{
+  "name": "dusty",
+  "version": "0.1.0",
+  "description": "A dusty lib for PD3 portal needs",
+  "main": "index.js",
+  "typings": "types/index.d.ts",
+  "scripts": {
+    "test": "tape tests/*.js | tap-spec",
+    "lint": "standard src/*.js | snazzy",
+    "lint:fix": "standard --fix src/*.js | snazzy"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/olive-ai-work/dusty.git"
+  },
+  "keywords": [
+    "dusty",
+    "lib",
+    "pd3",
+    "auth"
+  ],
+  "author": "Dustin Hershman<dustinh17@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/olive-ai-work/dusty/issues"
+  },
+  "homepage": "https://github.com/olive-ai-work/dusty#readme",
+  "dependencies": {
+    "ramda": "^0.27.1",
+    "olive-data-contracts": "^1.0.6"
+  },
+  "devDependencies": {
+    "snazzy": "^9.0.0",
+    "standard": "^16.0.3",
+    "tap-spec": "^5.0.0",
+    "tape": "^5.2.2"
+  },
+  "standard": {
+    "ignore": [
+      "types/"
+    ]
+  }
+}
