@@ -1,5 +1,6 @@
-import { Page } from 'puppeteer'
+import { ElementHandle, Page } from 'puppeteer'
 
 export interface PageIO {
-  isXPathVisible<T = Page>(page: T, selector: string, timeout?: number): boolean
+  clickExpectingNewWindow<T = Page>(page: T, elem: ElementHandle<Element>): Promise<[Page, void]>
+  isXPathVisible<T = Page>(page: T, selector: string, timeout?: number): Promise<boolean>
 }
