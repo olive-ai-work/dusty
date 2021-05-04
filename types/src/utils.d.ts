@@ -3,9 +3,9 @@ import { GlobalError, ProcedureCode } from 'olive-data-contracts'
 interface PortalCode {
   modifier?: string
   serviceUnits?: string
-  approvedUnits?: string
+  approvedUnits: string
   code: string
-  description: string
+  description?: string
 }
 
 export interface Utils {
