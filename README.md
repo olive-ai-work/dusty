@@ -95,7 +95,7 @@ The predicate is our validation function, it determines if an error is returned 
 ##### Returns
 
 - `GlobalError | null`
-  - A `GlobalError` type if an error is found, null otherwise
+  - A `GlobalError` type if an error is found, `null` otherwise
 
 ##### Usage
 
@@ -207,4 +207,60 @@ const div = await pageIO.isXPathVisible(page, '//div[@id="foobar"]')
 
 // To use it with another type like ElementHandle
 const visible = await pageIO.isXPathVisible<ElementHandle<Element>>(el, 'selector')
+```
+
+### Utils
+
+```js
+import { utils } from 'dusty`
+```
+
+#### compareQty(procs, cpt)
+
+A compare function that compares the quantity in a procedure code against a cpt from the portal
+
+##### Parameters
+
+- `procs`: `ProcedureCode[]` - An array of Procedure Codes in our authorization object
+- `cpt`: `PortalCode` - A formatted object of information about the cpt
+  - You can view the `portalCode` [structure here](https://github.com/olive-ai-work/dusty/blob/main/types/src/utils.d.ts#L3)
+
+##### Returns
+
+- `GlobalError[]`
+  - Returns an array of `GlobalError` types or an empty array if no errors are found
+
+##### Usage
+
+```js
+utils.compareQty(
+  [{ value: '1234', quantity: 1 }],
+  { code: '1234', description: 'A test!', approvedUnits: 1 }
+) // => []
+utils.compareQty(
+  [{ value: '1234', quantity: 1 }],
+  { code: '1234', description: 'A test!', approvedUnits: 2 }
+) // => [GlobalError]
+```
+
+#### toCamelCase(str)
+
+Turns a string to camel case, supports `.`, `-`, `_`, and `space` separators.
+
+##### Parameters
+
+- `str`: `String` - The string we want to transform
+
+##### Returns
+
+- `String`
+  - The camel cased string
+
+##### Usage
+
+```js
+utils.toCamelCase('Test that thing') // => 'testThatThing'
+utils.toCamelCase('test-that-thing') // => 'testThatThing'
+utils.toCamelCase('test_that_thing') // => 'testThatThing'
+utils.toCamelCase('test.that.thing') // => 'testThatThing'
 ```
