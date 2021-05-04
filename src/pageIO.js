@@ -31,7 +31,12 @@ async function isXPathVisible (page, selector, timeout = 3000) {
   return visible
 }
 
+async function countXPaths (page, selector) {
+  return (await page.$x(selector)).length
+}
+
 export default {
   clickExpectingNewWindow,
+  countXPaths,
   isXPathVisible
 }
