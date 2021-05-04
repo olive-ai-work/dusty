@@ -235,11 +235,11 @@ A compare function that compares the quantity in a procedure code against a cpt 
 ```js
 utils.compareQty(
   [{ value: '1234', quantity: 1 }],
-  { code: '1234', description: 'A test!', approvedUnits: 1 }
+  { code: '1234', approvedUnits: 1 }
 ) // => []
 utils.compareQty(
   [{ value: '1234', quantity: 1 }],
-  { code: '1234', description: 'A test!', approvedUnits: 2 }
+  { code: '1234', approvedUnits: 2 }
 ) // => [GlobalError]
 ```
 
